@@ -1,0 +1,194 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- nlu_fallback
+- purchase_product
+- out_of_scope
+- info_feedback
+- faq:
+    is_retrieval_intent: true
+- weather_without_city
+- greet
+- goodbye
+- affirm
+- deny
+- weather_in_city
+- capabilities
+- check_product_stock_all_detail
+- inform
+- misty_dance
+- who_are_you
+- customer_feedback
+- check_product_price
+entities:
+- city
+- sentiment
+- product
+- colour 
+- size 
+slots:
+  city:
+    type: text
+    influence_conversation: true
+  customer_name:
+    type: text
+    influence_conversation: true
+  colour:
+    type: text
+    influence_conversation: true
+  size:
+    type: text
+    influence_conversation: true
+  sentiment:
+    type: categorical
+    influence_conversation: true
+    values:
+    - pos
+    - neu
+    - neg
+  confirm_feedback:
+    type: any
+  feedback:
+    type: any
+  product:
+     type: text
+     influence_conversation: true   
+responses:
+  utter_based_on_sentiment:
+  - condition:
+    - type: slot
+      name: sentiment
+      value: pos
+    text: Hey, Thanks you for your feedback , it nice to hear that you are happy with the experience so far.
+  - condition:
+    - type: slot
+      name: sentiment
+      value: neu
+    text: Hey, Thanks you for your feedback , we will try to improve based on your feedback in future.
+  - condition:
+    - type: slot
+      name: sentiment
+      value: neg
+    text: Hey, Sorry that it does not meet your expectation we will do our best to improve the experience in future.
+  utter_greet:
+  - text: Hi! I'm Misty , I can help to check the stock for shoes in our shop and make order for you.
+  - text: Hi there, I'm Misty , are you looking for shoes ?
+  utter_ask_city:
+  - text: Which country weather you want to know  ?
+  - text: I know weather in Singapore, Malaysia and in Thailand, which one would you like to know ?
+  - text: Which country?
+  utter_weather:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"
+  utter_im_misty:
+  - text: I am Misty. I'm running on Rasa Open Source 2.0 conversational AI platform, I'm your friendly robot sale assistance!
+  utter_capabilities:
+  - text: I can help to check stock of the shoes in the inventory
+  utter_im_well:
+  - text: I'm good , thanks
+  - text: I'm well thanks. I can forecast the weather for you too.
+  utter_goodbye:
+  - text: Thank you for shopping with us.
+  - text: Bye Bye see you again .
+  utter_in_stock:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"
+  utter_no_stock:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"
+  utter_ask_customer_name:
+  - text: can i have your name please
+  utter_ask_colour:
+  - text: Tell me the colour of the shoes you would like to purchase
+  utter_ask_size:
+  - text: Tell me the size of the shoes you would like to purchase
+  utter_submit:
+  - text: Ok. Thanks!
+  utter_faq/sizing_clarification:
+  - text: Right now we only offer American sizes. We'll try to offer more other sizes in future!
+  utter_faq/payment_methods:
+  - text: We accept all major credit cards, NETS , and cash payment only .
+  utter_faq/promotions:
+  - text: Currently, we're running a buy one get one half off promotion!
+  utter_ask_continue:
+  - text: Sorry, I don't quite understand. Do you want to continue?
+  utter_purchase_success:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"
+  utter_purchase_fail:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"    
+  utter_purchase_cancel:
+  - text: It sad to hear that, do approach me if you need any more help regarding to our shoes.
+  utter_ask_confirm_feedback:
+  - text: All the feedback collected to find out the customer satisfaction and no personal information will be collected , Please awnswer yes or no to move on. 
+  utter_ask_feedback:
+  - text: Tell us the overall experience with misty as retail assistance so far.
+  utter_cancel_feedback:
+  - text: The request for feedback from you was rejected , we hope to able to receive your feedback .
+  utter_product_price:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}"    
+  utter_product_not_found:
+  - custom:
+      text: "{message}"
+      icon: "{icon}"
+      extra_text: "{display_txt}" 
+actions:
+- action_product_search
+- action_submit_results
+- action_weather
+- utter_ask_continue
+- utter_faq
+- validate_feedback_form
+- action_submit_feedback
+- action_find_product_price
+forms:
+  city_form:
+    required_slots:
+      city:
+      - type: from_entity
+        entity: city
+  purchase_form:
+    required_slots:
+      customer_name:
+      - type: from_text
+      colour:
+      - type: from_entity
+        entity: colour
+      size:
+      - type: from_entity
+        entity: size
+  feedback_form:
+    confirm_feedback:
+      - type: from_intent
+        intent: affirm
+        value: True
+      - type: from_intent
+        intent: deny
+        value: False
+      - type: from_intent
+        intent: inform
+        value: True
+    feedback:
+      - type: from_text
+        intent: info_feedback
+      
+
+      
+
+

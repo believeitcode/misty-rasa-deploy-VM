@@ -1,0 +1,103 @@
+version: "2.0"
+
+stories:
+
+- story: ask weather in city
+  steps:
+  - intent: weather_in_city
+  - action: action_weather
+ 
+- story: ask weather without city 
+  steps:
+  - intent: weather_without_city
+  - action: city_form
+  - action: action_weather
+  - action: action_restart 
+
+- story: ask misty what can he do
+  steps:
+  - intent: capabilities
+  - action: utter_capabilities
+
+- story: who_are_you
+  steps:
+  - intent: who_are_you
+  - action: utter_im_misty
+
+- story: check product stock with size and colour detail provided
+  steps:
+  - intent: check_product_stock_all_detail
+  - action: action_product_search
+  - action: action_restart 
+
+- story: Activate feedback form happy path
+  steps:
+  - intent: customer_feedback
+  - action: feedback_form
+  - active_loop: feedback_form
+
+# - story: feedback stop
+#   steps:
+#   - intent: customer_feedback
+#   - action: feedback_form
+#   - active_loop: feedback_form
+#   - intent: deny
+#   - action: action_deactivate_loop
+#   - active_loop: null 
+#   - action: utter_purchase_cancel
+#   - action: action_restart
+
+# - story: feedback continue
+#   steps:
+#   - intent: customer_feedback
+#   - action: feedback_form
+#   - active_loop: feedback_form
+#   - intent: affirm
+#   - action: feedback_form
+#   - action: utter_based_on_sentiment
+
+
+- story: Activate purchase form happy path
+  steps: 
+  - intent: purchase_product
+  - action: purchase_form
+  - active_loop: purchase_form
+  
+- story: purchase continue
+  steps:
+  - intent: purchase_product
+  - action: purchase_form
+  - active_loop: purchase_form
+  - intent: out_of_scope
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: purchase_form
+  - action: action_restart
+
+- story: purchase stop
+  steps:
+  - intent: purchase_product
+  - action: purchase_form
+  - active_loop: purchase_form
+  - intent: out_of_scope
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null 
+  - action: utter_purchase_cancel
+  - action: action_restart
+
+
+- story: no purchase
+  steps:
+  - intent: deny
+  - action: utter_purchase_cancel
+  - action: action_restart
+  
+
+- story: check product price
+  steps:
+  - intent: check_product_price
+  - action: action_find_product_price
+  - action: action_restart
+  

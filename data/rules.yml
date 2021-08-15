@@ -1,0 +1,54 @@
+version: "2.0"
+
+
+rules: 
+# Note only rules included are the ones pointing to greeting and goodbye. Both reset all slots.
+- rule: Greet Rule 
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: action_restart
+
+- rule: Goodbye Rule
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  - action: action_restart
+
+- rule: respond to FAQs
+  steps:
+  - intent: faq
+  - action: utter_faq
+
+# - rule: Activate purchase form
+#   steps: 
+#   - intent: purchase_product
+#   - action: purchase_form
+#   - active_loop: purchase_form
+
+- rule: Submit form
+  condition:
+  # If Condition that form is active 
+  - active_loop: purchase_form
+  steps:
+  - action: purchase_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    # The action we want to run when the form is filled
+  - action: action_submit_results
+  - action: action_restart
+
+- rule: Submit feedback form
+  condition:
+  # If condition that form is active 
+  - active_loop: feedback_form
+  steps:
+  - action: feedback_form
+  - active_loop: null
+    # The action we want to run when the form is filled
+  - action: action_submit_feedback
+  - action: action_restart
+  #- action: utter_based_on_sentiment
+
+

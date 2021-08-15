@@ -1,0 +1,238 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - morning
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - halo
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - thank you
+    - thanks
+- intent: who_are_you
+  examples: |
+    - who are you
+    - are you a bot
+    - what is your name
+    - are you human
+    - what are you
+- intent: weather_in_city
+  examples: |
+    - whats is the weather in [Singapore](city)
+    - how is the weather condition in [Malaysia](city)
+    - temperature in [Thailand](city)
+    - tell me the temperature in [Singapore](city)
+    - weather in [Malaysia](city)
+    - how is [Singapore](city) today
+    - i want to know the temperature in [Thailand](city)
+    - what is the weather like in [Singapore](city)
+    - check the weather in [Japan](city)
+    - how hot is the weather in [Singapore](city)
+    - how cold is the temperature in [Korea](city)
+- intent: weather_without_city
+  examples: |
+    - what's the weather
+    - i wan to know the weather of today
+    - what is the temperature today
+    - what is the temperature currently
+    - i wan to know the temperature of today
+    - hows the weather today
+    - tell me the weather forecast
+    - what is the weather like
+- intent: capabilities
+  examples: |
+    - what can you do
+    - what are your capabilities
+    - what are you good at
+    - what are you good for
+    - any instructions
+    - instructions
+    - how do i use this
+    - info
+    - information
+    - help
+    - can you help me
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - ok
+    - sure
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - none
+    - absolutely not
+    - no thanks
+    - stop
+    - cancel
+- intent: customer_feedback
+  examples: |
+    - i want to provide feedback
+    - i want to give feedback
+    - i wish to provide feedback
+    - giving feedback on service
+    - give feedback
+    - feedback
+- intent: info_feedback
+  examples: |
+    - It very helpful
+    - very good service
+    - good service
+    - I had the best experience speaking with you
+    - bad service 
+    - You are the most stupid bot I have ever seen
+    - the worst service
+    - response is slow
+    - limited service provided
+    - fun experience  
+- intent: check_product_stock_all_detail
+  examples: |
+    - do you have any [black](colour) size [9](size) shoes
+    - i am looking for [blue](colour) size [10](size) shoes
+    - i want to check stock for [black](colour) size [11](size) shoes
+    - check stock for [blue](colour) size [7](size) shoes
+    - do you have stock for [blue](colour) size [9](size) shoes
+    - are there any stock for [black](colour) size [8](size) shoes
+    - any stock for [black](colour) size [10](size) shoes
+    - can check do you have any stock for size [black](colour) [9](size) shoes
+- intent: purchase_product
+  examples: |
+    - I want to buy a pair of shoes
+    - i will like to purchase shoes
+    - i am buying the shoes
+    - buy shoes
+    - buy shoe
+- intent: out_of_scope
+  examples: |
+    - that's not what I want to do
+    - wait stop
+    - you're no help
+    - this is no help at all
+    - how old are you
+    - I want to order a pizza
+    - tell me the weather
+    - this isn'told you that
+    - don't like t working
+    - I already that
+    - I don't want to tell you that
+    - none of your business
+    - that's not right
+    - stop asking
+    - nevermind
+    - I want to do something else
+    - I changed my mind
+    - not really
+- intent: inform
+  examples: |
+    - [black](colour)
+    - [blue](colour)
+    - [red](colour)
+    - [orange](colour)
+    - [yellow](colour)
+    - [8](size)
+    - [9](size)
+    - [10](size)
+    - [black](colour) colour shoes
+    - [blue](colour) colour shoe
+    - size [7](size) shoes
+    - size [8](size) shoes
+- intent: check_product_price
+  examples: |
+    - how much does the [shirt](product) cost 
+    - what is the price for [shoes](product)
+    - the price for [pants](product)
+    - what is the cost for the [pants](product)
+    - [basketball](product) cost how much
+    - the cost for [shoes](product)
+    - cost for [shoes](product)
+    - what is the cost for [basketball](product)
+    - the pricing for [shoes](product)
+- lookup: product
+  examples: |
+    - shirt
+    - shoes
+    - pants
+    - basketball
+ 
+- lookup: colour
+  examples: |
+    - red
+    - blue
+    - orange
+    - black
+    - pink
+    - purple
+    - yellow
+       
+- intent: faq/sizing_clarification
+  examples: |
+    - American or european sizing?
+- intent: faq/payment_methods
+  examples: |
+    - what kind of payment methods do you offer?
+    - how do I pay
+- intent: faq/promotions
+  examples: |
+    - what kind of deals do you have
+    - are you running anything for black friday
+- intent: nlu_fallback
+  examples: |
+    - micky
+- synonym: temperature
+  examples: |
+    - hot
+    - cold
+    - chilly
+    - heat
+    - temp
+    - temperature
+- synonym: weather
+  examples: |
+    - weather
+    - forecast
+- synonym: Singapore
+  examples: |
+    - Singapore
+    - singapore
+    - sg
+- synonym: Malaysia
+  examples: |
+    - Malaysia
+    - malaysia
+- synonym: Thailand
+  examples: |
+    - Thailand
+    - thailand
